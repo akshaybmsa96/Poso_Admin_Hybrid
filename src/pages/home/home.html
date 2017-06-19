@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Unconfirmed Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list *ngFor="let item of orders" style="width: 100%; font-size: 16px " no-margin no-padding no-lines>
+    <button ion-item (click)="itemSelected(item)">
+      {{ item.contract.seller.show_name }}
+      <a  style="font-size: 12px; float: right; margin-top :10px ; margin-left: 15px "> {{item.delivery_date * 1000 | date}} </a>
+      <br>
+      <p style="color: #607D8B ; font-size: 13px; padding-top: 4px">
+        By: {{item.contract.buyer.show_name}}
+        <br>
+        Amount : ₹ {{item.final_amount}}
+        </p>
+      <ion-avatar item-right>
+        <a style="float: right; color: black " href="tel:{{item.contract.seller.sales_person.mobile}}">
+          <ion-icon name="call"></ion-icon> </a>
+      </ion-avatar>
+    </button>
+  </ion-list>
+</ion-content>

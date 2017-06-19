@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Full Description
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<div *ngIf="data">
+<a style="font-size: 16px" href="tel:{{data.contract.seller.sales_person.mobile}}" >{{data.contract.seller.show_name}}</a>
+  <br>
+  <br>
+  <a  style="color: #607D8B ; font-size: 12px; float: right ; margin-left: 15px "> {{data.delivery_date * 1000 | date}} </a>
+  By: <a padding-top="15px" style="color: black" href="tel:{{data.contract.buyer.sales_person.mobile}}"> {{data.contract.buyer.show_name}}</a><br>
+  Ordered On : {{data.created_at * 1000 | date}}
+  <div>
+    <br>
+    <h4>Items</h4>
+    <ion-list *ngFor="let item of data.items" style="width: 100%; font-size: 16px">
+      <p style="font-size: 16px;">{{item.item.name}}
+        <a  style="color: #607D8B ; font-size: 13px; float: right ; margin-left: 15px "> {{item.final_quantity}} {{item.item.uom}} </a>
+      <br>
+        <a  style="color: #607D8B ; font-size: 13px">{{item.item.rate}}/{{item.item.uom}}</a></p>
+    </ion-list>
+
+
+  <div  padding-top="8px">
+    <a  style=" color: black ; font-size: 14px; float: left">  Sub Total : </a>
+    <a  style=" color: black ;font-size: 14px; float: right ; margin-left: 15px "> ₹{{data.sub_total}}</a>
+    <br>
+    <a  style="float: left ; color: black ;font-size: 14px"> Delivery Charges : </a>
+    <a  style="color: black ;font-size: 14px; float: right ; margin-left: 15px "> ₹{{data.extra_charge_amount}} </a>
+    <br>
+    <a  style="color: black ;font-size: 14px; float: left"> Taxex : </a>
+    <a  style="color: black ;font-size: 14px; float: right ; margin-left: 15px "> ₹{{data.tax_amount}} </a>
+    <br>
+    <br>
+    <a  style="color: black ;font-size: 18px; float: left"> Total : </a>
+    <a  style="color: black ;font-size: 18px; float: right ; margin-left: 15px "> ₹{{data.final_amount.toString()}} </a>
+  </div>
+
+</div>
+
+</div>
+
+
+</ion-content>
+<ion-footer>
+  <button (click)="cancelOrder()" style="padding: 1px; width: 50%; color: white; background-color: #D50000; float: left; height: 48px">CANCEL ORDER</button>
+  <button (click)="confirmOrder()" style="padding: 1px; width: 50%; color: white; background-color: #1565C0 ; float: right; height: 48px">CONFIRM ORDER</button>
+</ion-footer>
